@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/AndroidStudioProjects/RecipeApp/app/src/main/res/drawable/btn_bg.xml" value="0.2415" />
         <entry key="..\:/Projects/AndroidStudioProjects/RecipeApp/app/src/main/res/layout/activity_main.xml" value="0.23645833333333333" />
+        <entry key="..\:/Projects/AndroidStudioProjects/RecipeApp/app/src/main/res/layout/activity_splash.xml" value="0.23645833333333333" />
       </map>
     </option>
   </component>

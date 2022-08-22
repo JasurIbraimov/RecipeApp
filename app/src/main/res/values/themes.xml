@@ -6,5 +6,8 @@
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/dark_green</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
+
 </resources>
