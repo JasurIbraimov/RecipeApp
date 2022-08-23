@@ -76,10 +76,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:itemCount="1"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_15sdp"
         tools:listitem="@layout/main_category_rvi">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Caterogy Name"
+        style="@style/AppSubTitle"
+        android:layout_marginStart="@dimen/_15sdp"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/category_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:itemCount="1"
+        tools:listitem="@layout/recipe_item_rvi">
 
     </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

@@ -5,5 +5,5 @@
     <color name="darkColor">#FF000000</color>
     <color name="secondaryColor">#f9ca24</color>
     <color name="lightColor">#FFFFFF</color>
-    <color name="transparentDark">#99000000</color>
+    <color name="transparentDark">#80000000</color>
 </resources>

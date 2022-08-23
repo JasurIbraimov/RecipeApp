@@ -24,6 +24,13 @@
         <item name="android:textSize">@dimen/_24ssp</item>
     </style>
 
+    <!--  SubTitle   -->
+    <style name="AppSubTitle">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:textColor">@color/darkColor</item>
+        <item name="android:textSize">@dimen/_20ssp</item>
+    </style>
+
     <!--  Bg Image of Splash Screen   -->
     <style name="SplashScreenBg">
         <item name="android:scaleType">centerCrop</item>
