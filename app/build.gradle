@@ -47,6 +47,7 @@ ext {
     roundedImageViewVersion = '2.3.0'
     scalableUnitSizeVersion = '1.1.0'
     easyPermissionVersion = '3.0.0'
+    retrofitVersion = '2.9.0'
 }
 dependencies {
     // Kotlin components
@@ -75,5 +76,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     // material design
     implementation "com.google.android.material:material:$materialVersion"
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
 }

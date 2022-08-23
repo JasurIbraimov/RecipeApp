@@ -4,10 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.jasur.recipeapp.converter.CategoriesConverter
 import com.jasur.recipeapp.dao.RecipeDao
+import com.jasur.recipeapp.entities.Categories
+import com.jasur.recipeapp.entities.Category
 import com.jasur.recipeapp.entities.Recipe
 
-@Database(entities = [Recipe::class], version = 1, exportSchema = false)
+@Database(entities = [Recipe::class, Categories::class, Category::class, CategoriesConverter::class], version = 1, exportSchema = false)
 abstract class RecipeDb : RoomDatabase() {
     abstract fun recipeDao(): RecipeDao
     companion object {

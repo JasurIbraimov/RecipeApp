@@ -14,6 +14,7 @@ class SplashActivity : AppCompatActivity() {
         getStartedBtn.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java);
             startActivity(intent)
+            finish()
         }
     }
 }
