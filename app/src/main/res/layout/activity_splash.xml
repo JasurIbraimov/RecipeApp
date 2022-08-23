@@ -3,15 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    style="@style/AppBg"
     tools:context=".activities.SplashActivity">
 
     <ImageView
         android:layout_width="match_parent"
+        style="@style/SplashScreenBg"
         android:layout_height="match_parent"
-        android:contentDescription="@string/splash_bg_description"
-        android:scaleType="centerCrop"
-        android:src="@drawable/splash_bg" />
+        android:contentDescription="@string/splash_bg_description" />
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -29,9 +28,9 @@
             android:paddingTop="@dimen/_12sdp"
             android:paddingBottom="@dimen/_10sdp"
             android:visibility="visible"
+            android:textColor="@color/lightColor"
             android:fontFamily="@font/poppins_bold"
-            android:text="@string/get_started"
-            android:textColor="@color/white" />
+            android:text="@string/get_started" />
 
         <ProgressBar
             android:id="@+id/loader"
@@ -39,7 +38,7 @@
             android:layout_height="@dimen/_40sdp"
             android:indeterminate="true"
             android:indeterminateTintMode="src_atop"
-            android:indeterminateTint="@color/white"
+            android:indeterminateTint="@color/primaryColor"
             android:layout_gravity="center" />
     </FrameLayout>
 

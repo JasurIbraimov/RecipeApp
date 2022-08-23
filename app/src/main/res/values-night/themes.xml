@@ -2,11 +2,36 @@
     <!-- Base application theme. -->
     <style name="Theme.RecipeApp" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/green</item>
-        <item name="colorPrimaryDark">@color/white</item>
-        <item name="colorAccent">@color/dark_green</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <!-- Customize your theme here. -->
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@android:transition/slide_right</item>
+        <item name="android:windowExitTransition">@android:transition/slide_left</item>
+    </style>
+
+    <!--  Search View   -->
+    <style name="ThemeOverlay.Search" parent="Theme.RecipeApp">
+        <item name="android:editTextColor">@color/primaryColor</item>
+    </style>
+
+    <!--  Title   -->
+    <style name="AppTitle">
+        <item name="android:textColor">@color/lightColor</item>
+        <item name="android:textSize">@dimen/_24ssp</item>
+        <item name="fontFamily">@font/poppins_black</item>
+    </style>
+
+    <!--  Bg Image of Splash Screen   -->
+    <style name="SplashScreenBg">
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:src">@drawable/splash_bg</item>
+    </style>
+
+    <!--  App Background  -->
+    <style name="AppBg">
+        <item name="android:background">@color/darkColor</item>
     </style>
 </resources>

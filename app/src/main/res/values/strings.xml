@@ -2,5 +2,7 @@
     <string name="app_name">RecipeApp</string>
     <string name="splash_bg_description">Splash Screen Background Image</string>
     <string name="get_started">Get Started</string>
-    <string name="home_title">All recipes</string>
+    <string name="home_title">Find Best Recipe\nFor Cooking</string>
+    <string name="search">Search for recipes</string>
+    <string name="filterIcon"></string>
 </resources>
