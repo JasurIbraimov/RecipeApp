@@ -2,4 +2,5 @@
     <string name="app_name">RecipeApp</string>
     <string name="splash_bg_description">Splash Screen Background Image</string>
     <string name="get_started">Get Started</string>
+    <string name="home_title">All recipes</string>
 </resources>

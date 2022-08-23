@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".SplashActivity">
+    tools:context=".activities.SplashActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -26,9 +26,10 @@
             android:background="@drawable/btn_bg"
             android:paddingStart="@dimen/_25sdp"
             android:paddingEnd="@dimen/_25sdp"
-            android:paddingTop="@dimen/_15sdp"
-            android:paddingBottom="@dimen/_15sdp"
+            android:paddingTop="@dimen/_12sdp"
+            android:paddingBottom="@dimen/_10sdp"
             android:visibility="visible"
+            android:fontFamily="@font/poppins_bold"
             android:text="@string/get_started"
             android:textColor="@color/white" />
 
