@@ -48,6 +48,7 @@ ext {
     scalableUnitSizeVersion = '1.1.0'
     easyPermissionVersion = '3.0.0'
     retrofitVersion = '2.9.0'
+    picassoVersion = '2.5.2'
 }
 dependencies {
     // Kotlin components
@@ -80,4 +81,6 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
+    // Picasso
+    implementation "com.squareup.picasso:picasso:$picassoVersion"
 }

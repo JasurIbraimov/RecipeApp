@@ -8,19 +8,26 @@ import com.jasur.recipeapp.entities.Category
 class CategoriesConverter {
     @TypeConverter
     fun fromCategoriesListToString(categoriesList: List<Category>): String? {
-        val gson = Gson()
-        val type = object : TypeToken<Category>() {
-
-        }.type
-        return gson.toJson(categoriesList, type)
+        if (categoriesList == null) {
+            return null
+        } else {
+            val gson = Gson()
+            val type = object : TypeToken<Category>() {
+            }.type
+            return gson.toJson(categoriesList, type)
+        }
     }
 
     @TypeConverter
     fun toCategoriesListFromString(categoriesString: String): List<Category>? {
-        val gson = Gson()
-        val type = object : TypeToken<Category>(){
+        if (categoriesString == null) {
+            return null
+        } else {
+            val gson = Gson()
+            val type = object : TypeToken<Category>(){
 
-        }.type
-        return gson.fromJson(categoriesString, type)
+            }.type
+            return gson.fromJson(categoriesString, type)
+        }
     }
 }
