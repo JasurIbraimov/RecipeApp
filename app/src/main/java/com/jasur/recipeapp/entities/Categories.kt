@@ -12,9 +12,9 @@ import com.jasur.recipeapp.converter.CategoriesConverter
 data class Categories(
     @PrimaryKey(autoGenerate = true) val id: Int,
     // Display Name
-    @ColumnInfo(name="dishes")
+    @ColumnInfo(name="categories")
     @Expose
-    @SerializedName("dishes")
+    @SerializedName("categories")
     @TypeConverters(CategoriesConverter::class)
     val categories: List<Category>? = null
 )

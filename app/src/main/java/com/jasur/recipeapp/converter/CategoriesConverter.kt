@@ -7,7 +7,7 @@ import com.jasur.recipeapp.entities.Category
 
 class CategoriesConverter {
     @TypeConverter
-    fun fromCategoriesListToString(categoriesList: List<Category>): String? {
+    fun convertListToString(categoriesList: List<Category>): String? {
         if (categoriesList == null) {
             return null
         } else {
@@ -19,7 +19,7 @@ class CategoriesConverter {
     }
 
     @TypeConverter
-    fun toCategoriesListFromString(categoriesString: String): List<Category>? {
+    fun convertStringToList(categoriesString: String): List<Category>? {
         if (categoriesString == null) {
             return null
         } else {
