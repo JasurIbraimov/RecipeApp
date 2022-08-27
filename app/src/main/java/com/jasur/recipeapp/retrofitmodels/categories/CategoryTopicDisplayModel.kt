@@ -1,4 +1,4 @@
-package com.jasur.recipeapp.retrofitmodels
+package com.jasur.recipeapp.retrofitmodels.categories
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

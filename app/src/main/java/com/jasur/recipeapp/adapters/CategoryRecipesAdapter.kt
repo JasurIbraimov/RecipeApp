@@ -7,10 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jasur.recipeapp.R
-import com.jasur.recipeapp.entities.Recipe
+import com.jasur.recipeapp.retrofitmodels.recipes.RecipeModel
+import com.squareup.picasso.Picasso
 
 class CategoryRecipesAdapter: RecyclerView.Adapter<CategoryRecipesAdapter.CategoryRecipesViewHolder>() {
-    var categoryRecipes = ArrayList<Recipe>()
+    var categoryRecipes = ArrayList<RecipeModel>()
 
     class CategoryRecipesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val recipeName: TextView = itemView.findViewById(R.id.recipe_name)
@@ -24,14 +25,16 @@ class CategoryRecipesAdapter: RecyclerView.Adapter<CategoryRecipesAdapter.Catego
 
     override fun onBindViewHolder(holder: CategoryRecipesViewHolder, position: Int) {
         val recipe = categoryRecipes[position]
-        holder.recipeName.text = recipe.recipe_name
+        holder.recipeName.text = recipe.display.displayName
+        Picasso.with(holder.recipeImage.context).load(recipe.display.images[0]).into(holder.recipeImage)
+        holder.recipeTime.text = recipe.content.details.totalTime
     }
 
     override fun getItemCount(): Int {
         return categoryRecipes.size
     }
 
-    fun setCategoryRecipes(cRecipes: List<Recipe>) {
-        categoryRecipes = cRecipes as ArrayList<Recipe>
+    fun setCategoryRecipes(cRecipes: List<RecipeModel>) {
+        categoryRecipes = cRecipes as ArrayList<RecipeModel>
     }
 }

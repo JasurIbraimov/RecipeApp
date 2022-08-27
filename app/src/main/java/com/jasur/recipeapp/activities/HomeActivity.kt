@@ -1,24 +1,23 @@
 package com.jasur.recipeapp.activities
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jasur.recipeapp.R
 import com.jasur.recipeapp.adapters.CategoryRecipesAdapter
 import com.jasur.recipeapp.adapters.MainCategoryAdapter
-import com.jasur.recipeapp.dao.CategoryTopicDao
 import com.jasur.recipeapp.db.CategoriesDb
 import com.jasur.recipeapp.entities.CategoryTopic
-import com.jasur.recipeapp.entities.Recipe
 import com.jasur.recipeapp.repositories.CategoryTopicRepository
 import com.jasur.recipeapp.retrofitclient.RetrofitClientInstance
-import com.jasur.recipeapp.retrofitmodels.AllCategoriesModel
-import com.jasur.recipeapp.retrofitmodels.CategoryModel
-import com.jasur.recipeapp.retrofitmodels.CategoryTopicModel
+import com.jasur.recipeapp.retrofitmodels.categories.AllCategoriesModel
+import com.jasur.recipeapp.retrofitmodels.recipes.MainRecipeResponseModel
+import com.jasur.recipeapp.retrofitmodels.recipes.RecipeModel
 import com.jasur.recipeapp.vmodels.CategoryTopicViewModel
 import com.jasur.recipeapp.vmodels.CategoryTopicViewModelFactory
 import retrofit2.Call
@@ -26,9 +25,8 @@ import retrofit2.Response
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var categoryTopicViewModel: CategoryTopicViewModel
-    private val recipes = ArrayList<Recipe>()
     private lateinit var mainCategoryAdapter: MainCategoryAdapter
-
+    private lateinit var recipesAdapter: CategoryRecipesAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -38,34 +36,28 @@ class HomeActivity : AppCompatActivity() {
         categoryTopicViewModel = ViewModelProvider(this,factory)[CategoryTopicViewModel::class.java]
         val mainCategoryList: RecyclerView = findViewById(R.id.main_category_list)
         val categoryItems: RecyclerView = findViewById(R.id.category_items)
-        val categoryRecipesAdapter = CategoryRecipesAdapter()
+        recipesAdapter = CategoryRecipesAdapter()
         mainCategoryAdapter = MainCategoryAdapter()
         mainCategoryList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        categoryTopicViewModel.categoryTopics.observe(this, Observer{
-            retrieveList(it)
-        })
+
         mainCategoryList.adapter = mainCategoryAdapter
 
-
-
-
-        // Temp
-        recipes.add(Recipe(1, "Easy Meatloaf"))
-        recipes.add(Recipe(2, "Hamburger Steak with Onions and Gravy"))
-        recipes.add(Recipe(3, "Tender Eye of Round Roast"))
-        recipes.add(Recipe(4, "Mississippi Pot Roast"))
-        recipes.add(Recipe(5, "World's Best Lasagna"))
-
-        categoryRecipesAdapter.setCategoryRecipes(recipes)
         categoryItems.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        categoryItems.adapter = categoryRecipesAdapter
+        categoryItems.adapter = recipesAdapter
 
-
+        categoryTopicViewModel.categoryTopics.observe(this) { categoryTopic ->
+            categoryTopic.find { it.displayName == "Cake" }
+                ?.let { retrieveList(categoryTopic, it.recipes) }
+        }
 
     }
 
     override fun onStart() {
-        getDataFromApi()
+        categoryTopicViewModel.categoryTopics.observe(this) {
+            if (it.isEmpty()) {
+                getDataFromApi()
+            }
+        }
         super.onStart()
     }
 
@@ -76,24 +68,56 @@ class HomeActivity : AppCompatActivity() {
                 call: Call<AllCategoriesModel>,
                 response: Response<AllCategoriesModel>
             ) {
-                response.body()?.let {
-                    for (data in it.browseCategories[it.browseCategories.size - 1].display.categoryTopics) {
-                        val categoryTopic = CategoryTopic(trackingId = data.trackingId, iconImage = data.display.iconImage, displayName = data.display.displayName, tag = data.display.tag, id = 0)
-                        categoryTopicViewModel.insert(categoryTopic)
+                response.body()?.let { categories ->
+                    for (data in categories.browseCategories[categories.browseCategories.size - 1].display.categoryTopics) {
+                        val secondCall = RetrofitClientInstance.apiService.getRecipesByCategoryTag(data.display.tag)
+                        Log.i("TAG", data.display.tag)
+                        secondCall.enqueue(object : retrofit2.Callback<MainRecipeResponseModel> {
+                            override fun onResponse(
+                                call: Call<MainRecipeResponseModel>,
+                                response: Response<MainRecipeResponseModel>
+                            ) {
+                                response.body()?.let {
+                                    val categoryTopic = CategoryTopic(trackingId = data.trackingId,
+                                        iconImage = data.display.iconImage,
+                                        displayName = data.display.displayName,
+                                        tag = data.display.tag,
+                                        id = 0,
+                                        recipes = it.feed
+                                    )
+                                    categoryTopicViewModel.insert(categoryTopic)
+                                }
+                            }
+
+                            override fun onFailure(
+                                call: Call<MainRecipeResponseModel>,
+                                t: Throwable
+                            ) {
+                                Toast.makeText(applicationContext, "error fetch recipes", Toast.LENGTH_LONG).show()
+                            }
+
+                        })
+
                     }
                 }
             }
 
             override fun onFailure(call: Call<AllCategoriesModel>, t: Throwable) {
-                Toast.makeText(applicationContext, "error", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "error fetch categories", Toast.LENGTH_LONG).show()
             }
 
         })
     }
-    private fun retrieveList(categoryTopics: List<CategoryTopic>) {
+    @SuppressLint("NotifyDataSetChanged")
+    private fun retrieveList(categoryTopics: List<CategoryTopic>, recipes: List<RecipeModel>) {
         mainCategoryAdapter.apply {
             addCategories(categoryTopics)
             notifyDataSetChanged()
         }
+        recipesAdapter.apply {
+            setCategoryRecipes(recipes)
+            notifyDataSetChanged()
+        }
+
     }
 }

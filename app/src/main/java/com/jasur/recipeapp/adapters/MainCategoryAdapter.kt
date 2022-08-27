@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jasur.recipeapp.R
 import com.jasur.recipeapp.entities.CategoryTopic
-import com.jasur.recipeapp.retrofitmodels.CategoryTopicModel
 import com.squareup.picasso.Picasso
 
 class MainCategoryAdapter: RecyclerView.Adapter<MainCategoryAdapter.MainCategoryViewHolder>() {

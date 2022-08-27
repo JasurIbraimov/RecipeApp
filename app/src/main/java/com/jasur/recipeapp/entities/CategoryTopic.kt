@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.jasur.recipeapp.retrofitmodels.recipes.RecipeModel
 
 @Entity(tableName = "category_topic")
 data class CategoryTopic(
@@ -29,4 +30,9 @@ data class CategoryTopic(
     @Expose
     @SerializedName("tag")
     val tag: String,
+
+    @ColumnInfo(name="recipes")
+    @Expose
+    @SerializedName("recipes")
+    val recipes: List<RecipeModel>
 )
