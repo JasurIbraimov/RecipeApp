@@ -1,6 +1,5 @@
 package com.jasur.recipeapp.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,14 +7,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jasur.recipeapp.R
-import com.jasur.recipeapp.entities.Category
-import com.jasur.recipeapp.entities.Recipe
-import com.jasur.recipeapp.retrofitmodels.CategoryModel
+import com.jasur.recipeapp.entities.CategoryTopic
 import com.jasur.recipeapp.retrofitmodels.CategoryTopicModel
 import com.squareup.picasso.Picasso
 
 class MainCategoryAdapter: RecyclerView.Adapter<MainCategoryAdapter.MainCategoryViewHolder>() {
-    var mainCategories = ArrayList<CategoryTopicModel>()
+    var categoryTopics = ArrayList<CategoryTopic>()
 
     class MainCategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val categoryName: TextView = itemView.findViewById(R.id.categoryName)
@@ -27,19 +24,19 @@ class MainCategoryAdapter: RecyclerView.Adapter<MainCategoryAdapter.MainCategory
     }
 
     override fun onBindViewHolder(holder: MainCategoryViewHolder, position: Int) {
-        val category = mainCategories[position]
-        holder.categoryName.text = category.display.displayName
-        Picasso.with(holder.categoryImage.context).load(category.display.iconImage).into(holder.categoryImage)
+        val category = categoryTopics[position]
+        holder.categoryName.text = category.displayName
+        Picasso.with(holder.categoryImage.context).load(category.iconImage).into(holder.categoryImage)
     }
 
     override fun getItemCount(): Int {
-        return mainCategories.size
+        return categoryTopics.size
     }
 
-    fun addCategories(categories: List<CategoryTopicModel>) {
-        this.mainCategories.apply {
+    fun addCategories(categoryTopics: List<CategoryTopic>) {
+        this.categoryTopics.apply {
             clear()
-            addAll(categories)
+            addAll(categoryTopics)
         }
 
     }

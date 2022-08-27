@@ -6,10 +6,20 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "category")
-data class Category(
+@Entity(tableName = "category_topic")
+data class CategoryTopic(
     @PrimaryKey(autoGenerate = true) val id: Int,
-    // Display Name
+    // Tag
+    @ColumnInfo(name="tracking-id")
+    @Expose
+    @SerializedName("tracking-id")
+    val trackingId: String,
+    // Icon image
+    @ColumnInfo(name="icon-image")
+    @Expose
+    @SerializedName("iconImage")
+    val iconImage: String,
+
     @ColumnInfo(name="displayName")
     @Expose
     @SerializedName("displayName")
@@ -19,9 +29,4 @@ data class Category(
     @Expose
     @SerializedName("tag")
     val tag: String,
-    // Icon image
-    @ColumnInfo(name="iconImage")
-    @Expose
-    @SerializedName("iconImage")
-    val iconImage: String,
-    )
+)

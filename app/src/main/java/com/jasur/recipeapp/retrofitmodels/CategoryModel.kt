@@ -1,7 +1,6 @@
 package com.jasur.recipeapp.retrofitmodels
 
 import com.google.gson.annotations.SerializedName
-import com.jasur.recipeapp.entities.Category
 
 data class CategoryModel (
     @SerializedName("promoted")

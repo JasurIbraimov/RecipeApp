@@ -1,6 +1,5 @@
 package com.jasur.recipeapp.interfaces
 
-import com.jasur.recipeapp.entities.Category
 import com.jasur.recipeapp.retrofitmodels.AllCategoriesModel
 import retrofit2.Call
 import retrofit2.http.GET

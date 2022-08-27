@@ -1,7 +1,6 @@
 package com.jasur.recipeapp.retrofitmodels
 
 import com.google.gson.annotations.SerializedName
-import com.jasur.recipeapp.entities.Category
 
 data class CategoryTopicModel(
     // Display Name
@@ -15,7 +14,7 @@ data class CategoryTopicModel(
     val iconImage: String,
 
     @SerializedName("display")
-    val display: Category,
+    val display: CategoryTopicDisplayModel,
 
     @SerializedName("content")
     val content: HashMap<*, *> = hashMapOf<Any, Any>(),
