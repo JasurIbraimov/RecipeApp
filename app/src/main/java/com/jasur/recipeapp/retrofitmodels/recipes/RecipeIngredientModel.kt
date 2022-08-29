@@ -12,5 +12,5 @@ data class RecipeIngredientModel (
     @SerializedName("remainder")
     val remainder: String,
     @SerializedName("quantity")
-    val quantity: Int
+    val quantity: Double
 )

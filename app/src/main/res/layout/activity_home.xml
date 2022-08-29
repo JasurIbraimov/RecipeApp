@@ -1,99 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     style="@style/AppBg"
     tools:context=".activities.HomeActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_margin="@dimen/_15sdp"
-        android:layout_height="wrap_content"
-        android:text="@string/home_title"
-        style="@style/AppTitle" />
+   <FrameLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/splashScreen"
+       >
+       <ImageView
+           android:layout_width="match_parent"
+           style="@style/SplashScreenBg"
+           android:layout_height="match_parent"
+           android:contentDescription="@string/splash_bg_description" />
 
-    <androidx.cardview.widget.CardView
+       <FrameLayout
+           android:layout_width="wrap_content"
+           android:layout_gravity="center"
+           android:layout_height="wrap_content">
+
+           <Button
+               android:id="@+id/get_started_btn"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textSize="@dimen/_14ssp"
+               android:background="@drawable/btn_bg"
+               android:paddingStart="@dimen/_25sdp"
+               android:paddingEnd="@dimen/_25sdp"
+               android:paddingTop="@dimen/_12sdp"
+               android:paddingBottom="@dimen/_10sdp"
+               android:visibility="visible"
+               android:textColor="@color/lightColor"
+               android:fontFamily="@font/poppins_bold"
+               android:text="@string/get_started" />
+
+           <ProgressBar
+               android:id="@+id/loader"
+               android:layout_width="@dimen/_40sdp"
+               android:layout_height="@dimen/_40sdp"
+               android:indeterminate="true"
+               android:indeterminateTintMode="src_atop"
+               android:indeterminateTint="@color/primaryColor"
+               android:layout_gravity="center" />
+       </FrameLayout>
+   </FrameLayout>
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_15sdp"
-        app:cardElevation="@dimen/_10sdp"
-        app:cardCornerRadius="@dimen/_10sdp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/homeScreen"
+        style="@style/AppBg">
 
-        >
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_margin="@dimen/_15sdp"
+            android:layout_height="wrap_content"
+            android:text="@string/home_title"
+            style="@style/AppTitle" />
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            app:cardElevation="@dimen/_10sdp"
+            app:cardCornerRadius="@dimen/_10sdp"
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/ver_guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.80"/>
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-
-            <SearchView
-                android:id="@+id/recipeSearch"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/search_bg"
-                android:iconifiedByDefault="false"
-                android:queryBackground="@null"
-                android:queryHint="@string/search"
-                android:theme="@style/ThemeOverlay.Search"
-                app:layout_constraintBaseline_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/ver_guideline"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-
-            <Button
-                android:id="@+id/filterBtn"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/font_awesome_solid"
-                android:scaleType="fitCenter"
-                android:text="@string/filterIcon"
-                android:textColor="@color/primaryColor"
-                android:textSize="@dimen/_15ssp"
-                app:layout_constraintBaseline_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ver_guideline"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/ver_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.80"/>
 
 
-    </androidx.cardview.widget.CardView>
+                <SearchView
+                    android:id="@+id/recipeSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/search_bg"
+                    android:iconifiedByDefault="false"
+                    android:queryBackground="@null"
+                    android:queryHint="@string/search"
+                    android:theme="@style/ThemeOverlay.Search"
+                    app:layout_constraintBaseline_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/ver_guideline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/main_category_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:itemCount="1"
-        tools:listitem="@layout/main_category_rvi">
+                <Button
+                    android:id="@+id/filterBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/font_awesome_solid"
+                    android:scaleType="fitCenter"
+                    android:text="@string/filterIcon"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="@dimen/_15ssp"
+                    app:layout_constraintBaseline_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ver_guideline"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.recyclerview.widget.RecyclerView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Caterogy Name"
-        style="@style/AppSubTitle"
-        android:layout_marginStart="@dimen/_15sdp"
-        />
+        </androidx.cardview.widget.CardView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/category_items"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:itemCount="1"
-        tools:listitem="@layout/recipe_item_rvi">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_category_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:itemCount="1"
+            tools:listitem="@layout/main_category_rvi">
 
-    </androidx.recyclerview.widget.RecyclerView>
-</LinearLayout>
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Caterogy Name"
+            android:id="@+id/categoryTitleName"
+            style="@style/AppSubTitle"
+            android:layout_marginStart="@dimen/_15sdp"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/category_items"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:itemCount="1"
+            tools:listitem="@layout/recipe_item_rvi">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+</FrameLayout>

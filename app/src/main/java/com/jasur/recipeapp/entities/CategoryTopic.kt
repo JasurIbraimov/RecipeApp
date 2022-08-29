@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.jasur.recipeapp.retrofitmodels.recipes.RecipeModel
+import java.io.Serializable
 
 @Entity(tableName = "category_topic")
 data class CategoryTopic(

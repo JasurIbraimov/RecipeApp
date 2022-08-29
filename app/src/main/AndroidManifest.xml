@@ -19,12 +19,8 @@
         android:theme="@style/Theme.RecipeApp"
         tools:targetApi="31">
         <activity
+            android:screenOrientation="locked"
             android:name=".activities.HomeActivity"
-            android:screenOrientation="locked"
-            android:exported="false" />
-        <activity
-            android:screenOrientation="locked"
-            android:name=".activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
